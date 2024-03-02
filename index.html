@@ -32,9 +32,14 @@
   }
 
   if (results[playerSelection].beats === computerSelection) {
-    return "You win ${playerSelection} beats ${computerSelection}";
+    return `You win ${playerSelection} beats ${computerSelection}`;
   }
   
-  return "You lose ${computerSelection} beats ${playerSelection}";
-}
+  return `You lose ${computerSelection} beats ${playerSelection}`;
+  }
+
+  let playerSelection = prompt("Choose between Rock Paper and Scissors");
+  let computerSelection = getComputerChoice();
+  alert(playRound(playerSelection,computerSelection)) 
+  
 </script>
