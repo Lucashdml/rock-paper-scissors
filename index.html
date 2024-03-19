@@ -21,7 +21,6 @@
         <p>Player Score :<span class="playerScore">0</span></p>
         <p>Computer Score :<span class="computerScore">0</span></p>
       </div>
-            
     </div>
   </body>
 </html>
@@ -32,8 +31,10 @@
     return options[optionChoice];
   }
 
-  function playRound(playerSelection, computerSelection) {
+  function playRound(playerSelection) {
     playerSelection = playerSelection.toLowerCase();
+    computerSelection = getComputerChoice();
+    let roundResult;
 
     const results = {
       rock: { beats: "scissors", losesTo: "paper" },
@@ -42,14 +43,12 @@
     };
 
     if (playerSelection === computerSelection) {
-      return "Its a tie!";
+      roundResult = "Its a tie!";
+    } else if (results[playerSelection].beats === computerSelection) {
+      roundResult = `You win ${playerSelection} beats ${computerSelection}`;
+    } else {
+      roundResult = `You lose ${computerSelection} beats ${playerSelection}`;
     }
-
-    if (results[playerSelection].beats === computerSelection) {
-      return `You win ${playerSelection} beats ${computerSelection}`;
-    }
-
-    return `You lose ${computerSelection} beats ${playerSelection}`;
   }
 
   function playGame() {
