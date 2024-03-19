@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto,sans-serif;
+}
+
+.gameContainer {
+  padding: 1cm;
+  border-style: solid;
+  text-align: center;
+  background-color: rgb(254, 128, 25);
+}
+
+button {
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #fb4934;
+  border: 1px solid rgb(238, 240, 247);
+  color: #b8bb26;
+  margin: 5px;
+  font-weight: 800;
+  font-size: 25px;
+}
