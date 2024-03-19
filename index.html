@@ -25,15 +25,23 @@
   </body>
 </html>
 <script>
+  let playerScore = 0;
+  let computerScore = 0;
+  let currentRound = 1;
+  const totalRounds = 5;
+  const resultElement = document.querySelector(".result");
+  const playerScoreDisplay = document.querySelector(".player-score");
+  const computerScoreDisplay = document.querySelector(".computer-score");
+
   function getComputerChoice() {
     const options = ["rock", "paper", "scissors"];
     const optionChoice = Math.floor(Math.random() * options.length);
     return options[optionChoice];
   }
 
-  function playRound(playerSelection, computerSelection) {
+  function playRound(playerSelection) {
     playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
+    const computerSelection = getComputerChoice();
 
     const results = {
       rock: { beats: "scissors", losesTo: "paper" },
@@ -42,52 +50,49 @@
     };
 
     if (playerSelection === computerSelection) {
-      return "It's a tie!";
+      resultElement.textContent = "It's a tie!";
     } else if (results[playerSelection].beats === computerSelection) {
-      return `You win! ${playerSelection} beats ${computerSelection}`;
+      resultElement.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+      playerScore++;
     } else {
-      return `You lose! ${computerSelection} beats ${playerSelection}`;
+      resultElement.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+      computerScore++;
+    }
+
+    playerScoreDisplay.textContent = `Player Score: ${playerScore}`;
+    computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+
+    currentRound++;
+    if (currentRound > totalRounds) {
+      endGame();
     }
   }
 
-  function playGame() {
-    let playerScore = 0;
-    let computerScore = 0;
-    const resultElement = document.querySelector(".result");
-
-    function playRoundUpdateUI(playerSelection) {
-      let computerChoice = getComputerChoice();
-      let roundResult = playRound(playerSelection, computerChoice);
-      resultElement.textContent = "Round: " + roundResult;
-
-      if (roundResult.includes("win")) {
-        playerScore++;
-      } else if (roundResult.includes("lose")) {
-        computerScore++;
-      }
-
-      document.querySelector(".player-score").textContent =
-        `Player Score: ${playerScore}`;
-      document.querySelector(".computer-score").textContent =
-        `Computer Score: ${computerScore}`;
+  function endGame() {
+    let finalResult = "";
+    if (playerScore > computerScore) {
+      finalResult = "Congratulations, you won the game!";
+    } else if (playerScore < computerScore) {
+      finalResult = "Game over, the computer wins!";
+    } else {
+      finalResult = "The game ends in a draw!";
     }
-
-    const rockBtn = document.querySelector(".rock");
-    const paperBtn = document.querySelector(".paper");
-    const scissorsBtn = document.querySelector(".scissors");
-
-    rockBtn.addEventListener("click", () => {
-      playRoundUpdateUI("rock");
-    });
-
-    paperBtn.addEventListener("click", () => {
-      playRoundUpdateUI("paper");
-    });
-
-    scissorsBtn.addEventListener("click", () => {
-      playRoundUpdateUI("scissors");
-    });
+    resultElement.textContent += `\n Final result: ${finalResult}`;
   }
 
-  playGame();
+  const rockBtn = document.querySelector(".rock");
+  const paperBtn = document.querySelector(".paper");
+  const scissorsBtn = document.querySelector(".scissors");
+
+  rockBtn.addEventListener("click", () => {
+    playRound("rock");
+  });
+
+  paperBtn.addEventListener("click", () => {
+    playRound("paper");
+  });
+
+  scissorsBtn.addEventListener("click", () => {
+    playRound("scissors");
+  });
 </script>
