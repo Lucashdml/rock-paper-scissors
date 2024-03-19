@@ -5,14 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rock Paper Scissors</title>
   </head>
-  <body></body>
+  <body>
+    <div class="gameContainer">
+        <h1>Rock Paper Scissors Game</h1>
+        <div class="choices">
+            <button class='rock'>Rock</button>
+            <button class='paper'>Paper</button>
+            <button class='scissors'>Scissors</button>
+        </div>
+        <div class="result">
+            
+        </div>
+        <div class="score">
+           <p>Player Score :<span class="playerScore">0</span></p> 
+           <p>Computer Score :<span class="computerScore">0</span></p> 
+        </div>
+    </div>
+  </body>
 </html>
 <script>
   function getComputerChoice() {
     const options = ["rock", "paper", "scissors"];
-
     const optionChoice = Math.floor(Math.random() * options.length);
-
     return options[optionChoice];
   }
 
