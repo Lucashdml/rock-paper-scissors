@@ -18,8 +18,8 @@
       <div class="result"></div>
 
       <div class="score">
-        <p>Player Score :<span class="playerScore">0</span></p>
-        <p>Computer Score :<span class="computerScore">0</span></p>
+        <div class="player-score">Player Score: 0</div>
+        <div class="computer-score">Computer Score: 0</div>
       </div>
     </div>
   </body>
@@ -27,14 +27,14 @@
 <script>
   function getComputerChoice() {
     const options = ["rock", "paper", "scissors"];
+      
     const optionChoice = Math.floor(Math.random() * options.length);
+      
     return options[optionChoice];
   }
 
   function playRound(playerSelection) {
     playerSelection = playerSelection.toLowerCase();
-    computerSelection = getComputerChoice();
-    let roundResult;
 
     const results = {
       rock: { beats: "scissors", losesTo: "paper" },
@@ -43,11 +43,11 @@
     };
 
     if (playerSelection === computerSelection) {
-      roundResult = "Its a tie!";
+      return "Its a tie!";
     } else if (results[playerSelection].beats === computerSelection) {
-      roundResult = `You win ${playerSelection} beats ${computerSelection}`;
+      return `You win ${playerSelection} beats ${computerSelection}`;
     } else {
-      roundResult = `You lose ${computerSelection} beats ${playerSelection}`;
+      return `You lose ${computerSelection} beats ${playerSelection}`;
     }
   }
 
