@@ -4,95 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rock Paper Scissors</title>
+    <link href="css/style.css" rel="stylesheet" />
   </head>
   <body>
     <div class="gameContainer">
       <h1>Rock Paper Scissors Game</h1>
-
       <div class="choices">
         <button class="rock">Rock</button>
         <button class="paper">Paper</button>
         <button class="scissors">Scissors</button>
       </div>
-
       <div class="result"></div>
-
-      <div class="score">
+      <div class="scores">
         <div class="player-score">Player Score: 0</div>
         <div class="computer-score">Computer Score: 0</div>
       </div>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
-<script>
-  let playerScore = 0;
-  let computerScore = 0;
-  let currentRound = 1;
-  const totalRounds = 5;
-  const resultElement = document.querySelector(".result");
-  const playerScoreDisplay = document.querySelector(".player-score");
-  const computerScoreDisplay = document.querySelector(".computer-score");
-
-  function getComputerChoice() {
-    const options = ["rock", "paper", "scissors"];
-    const optionChoice = Math.floor(Math.random() * options.length);
-    return options[optionChoice];
-  }
-
-  function playRound(playerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    const computerSelection = getComputerChoice();
-
-    const results = {
-      rock: { beats: "scissors", losesTo: "paper" },
-      paper: { beats: "rock", losesTo: "scissors" },
-      scissors: { beats: "paper", losesTo: "rock" },
-    };
-
-    if (playerSelection === computerSelection) {
-      resultElement.textContent = "It's a tie!";
-    } else if (results[playerSelection].beats === computerSelection) {
-      resultElement.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
-      playerScore++;
-    } else {
-      resultElement.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
-      computerScore++;
-    }
-
-    playerScoreDisplay.textContent = `Player Score: ${playerScore}`;
-    computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
-
-    currentRound++;
-    if (currentRound > totalRounds) {
-      endGame();
-    }
-  }
-
-  function endGame() {
-    let finalResult = "";
-    if (playerScore > computerScore) {
-      finalResult = "Congratulations, you won the game!";
-    } else if (playerScore < computerScore) {
-      finalResult = "Game over, the computer wins!";
-    } else {
-      finalResult = "The game ends in a draw!";
-    }
-    resultElement.textContent += `\n Final result: ${finalResult}`;
-  }
-
-  const rockBtn = document.querySelector(".rock");
-  const paperBtn = document.querySelector(".paper");
-  const scissorsBtn = document.querySelector(".scissors");
-
-  rockBtn.addEventListener("click", () => {
-    playRound("rock");
-  });
-
-  paperBtn.addEventListener("click", () => {
-    playRound("paper");
-  });
-
-  scissorsBtn.addEventListener("click", () => {
-    playRound("scissors");
-  });
-</script>
