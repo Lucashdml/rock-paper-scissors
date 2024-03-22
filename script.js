@@ -33,13 +33,12 @@ function playRound(playerSelection) {
 
   playerScoreDisplay.textContent = `Player Score: ${playerScore}`;
   computerScoreDisplay.textContent = `computerScore: ${computerScore}`;
-  document.querySelector(".round").textContent = `Round: ${currentRound}`
+  document.querySelector(".round").textContent = `Round: ${currentRound}`;
 
   currentRound++;
   if (currentRound > maxRound) {
     gameOver();
   }
-
 }
 
 function gameOver() {
